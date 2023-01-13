@@ -25,8 +25,9 @@ f = open('./Classification_Models/ML_Model/model_95.81.pkl', 'rb')
 classifier_model = pickle.load(f)
 f.close()
 
-# Load Spacy Model
+# Load Spacy Model: Either use the last model or the best one
 spacy_model = spacy.load("./spacy-model/model-best")
+# spacy_model = spacy.load("./spacy-model/model-last")
 
 def preprocess_text(text):
     """This utility function sanitizes a string by:
