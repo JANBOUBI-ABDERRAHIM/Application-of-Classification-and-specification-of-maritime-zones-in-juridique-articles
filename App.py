@@ -16,7 +16,7 @@ from nltk.stem.snowball import SnowballStemmer
 stemmer = SnowballStemmer("french")
 
 
-#DataFlair - Initialize a TfidfVectorizer
+#Initialize a TfidfVectorizer
 f = open('./Classification_Models/ML_Model/tfidf_vectorizer.pkl', 'rb')
 tfidf_vectorizer = pickle.load(f)
 f.close()
@@ -24,9 +24,6 @@ f.close()
 f = open('./Classification_Models/ML_Model/model_95.81.pkl', 'rb')
 classifier_model = pickle.load(f)
 f.close()
-
-# Load the classifier from the file
-# classifier_model = joblib.load('./Classification_Models/ML_Model/Classifier_Zone_Not_Zone.pkl')
 
 # Load Spacy Model
 spacy_model = spacy.load("./spacy-model/model-best")
@@ -64,11 +61,7 @@ def Predict(model, article):
     return 'Not Zone'
 
 
-#from spacy_streamlit import visualize_parser
 st.title("Zone text classification Web Application")
-#st.text_area("Enter Text", value="", max_chars=None, key=None, type="default", help=None, autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False, label_visibility="visible")
-#text=st.text_area("Entre text","tape ici")
-# st.text_input takes a label and default text string:
 article = st.text_input("Entre an article", "")
 
 if article != '':
@@ -79,5 +72,3 @@ if article != '':
             doc = spacy_model(article)
             ent_html = displacy.render(doc, style="ent", jupyter=False)
             st.markdown(ent_html, unsafe_allow_html=True)
-
-## Le Maroc jouit d’un domaine maritime important, qui représente plus d’un million de km2 de zone économique maritime exclusive. Ce domaine a été renforcé juridiquement grâce à l’adoption de deux lois. Détails.
